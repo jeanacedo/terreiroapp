@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+        <div class="container mt-5">
+            <h1>Acesso ao sistema</h1>
+            <hr>
+            <div class="col">
+                <form method="POST" action="" class="border mt-4 w-25 p-3">
+                    <legend>Login</legend>
+                    <fieldset>
+                        <div class="form-group">
+                            {{ form_login.username.label(class="form-control-label") }}
+                            {{ form_login.username(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_login.senha.label(class="form-control-label") }}
+                            {{ form_login.senha(class="form-control") }}
+                        </div>
+                        <div class="form-group mt-1">
+                            {{ form_login.remember(class="form-check-input") }}
+                            {{ form_login.remember.label(class="form-control-label") }}
+                        </div>
+                    </fieldset>
+                    {{ form_login.button_submit(class="btn btn-primary mt-2") }}
+                </form>
+            </div>
+        </div>
+{% endblock %}
