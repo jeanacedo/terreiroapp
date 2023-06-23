@@ -1,10 +1,14 @@
 from flask import Flask, render_template, url_for, request, flash, redirect
 import secret
 from forms import FormLogin
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = secret.secret_key
+app.config['SQLALCHEMY_DATABASE_URI'] = secret.db_ri
+
+database = SQLAlchemy(app)
 
 @app.route('/')
 def hello_world():
