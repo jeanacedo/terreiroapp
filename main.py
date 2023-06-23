@@ -22,7 +22,7 @@ def giras():
 def mensalidades():
     return render_template('mensalidades.html')
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form_login = FormLogin()
     return render_template('login.html', form_login=form_login)
