@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, request, flash, redirect
 import secret
 from forms import FormLogin
 
@@ -25,6 +25,11 @@ def mensalidades():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form_login = FormLogin()
+    if form_login.validate_on_submit():
+        #realizou login
+        flash(f'Login feito com sucesso para o email: {form_login.username.data}', 'alert-success')
+        #redirecionando para pagina filhos
+        return redirect(url_for('filhos'))
     return render_template('login.html', form_login=form_login)
 
 if __name__ == '__main__':
