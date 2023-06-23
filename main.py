@@ -9,6 +9,13 @@ def hello_world():
 def filhos():
     return render_template('filhos.html')
 
+@app.route('/giras')
+def giras():
+    return render_template('giras.html')
+
+@app.route('/mensalidades')
+def mensalidades():
+    return render_template('mensalidades.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
