@@ -1,22 +1,22 @@
 from main import database
 import enum
 
-class Status(enum.Enum):
-    ATIVO = 'ativo'
-    INATIVO = 'inativo'
-    SUSPENSO = 'suspenso'
+# class Status(enum.Enum):
+#     ATIVO = 'ativo'
+#     INATIVO = 'inativo'
+#     SUSPENSO = 'suspenso'
 
-class Users(enum.Enum):
-    ADM = 'administrador'
-    SUP = 'supervisão'
+# class Users(enum.Enum):
+#     ADM = 'adm'
+#     SUP = 'sup'
 
-class StatusFinanceiro(enum.Enum):
-    PAGO = 'pago'
-    PENDENTE = 'pendente'
+# class StatusFinanceiro(enum.Enum):
+#     PAGO = 'pago'
+#     PENDENTE = 'pendente'
 
 class Usuario(database.Model):
     username = database.Column(database.String(30), primary_key=True, nullable=False)
-    role = database.Column(database.Enum(Users), nullable=False, default=Users.SUP.value, server_default=Users.SUP.value)
+    role = database.Column(database.String(3), nullable=False, default='sup')
     senha = database.Column(database.Integer, nullable=False)
 
 class Filhos(database.Model):
@@ -24,7 +24,7 @@ class Filhos(database.Model):
     nome = database.Column(database.String(60))
     nascimento = database.Column(database.Date, nullable=False)
     inicio = database.Column(database.Date)
-    status = database.Column(database.Enum(Status), nullable=False, default=Status.ATIVO.value, server_default=Status.ATIVO.value)
+    status = database.Column(database.String(8), nullable=False, default='ativo')
     hierarquia = database.Column(database.String(15), default='sem faixa')
     orixa1 = database.Column(database.String(8))
     orixa2 = database.Column(database.String(8))
@@ -50,7 +50,7 @@ class Financeiro(database.Model):
     idmensalidade = database.Column(database.Integer, primary_key=True)
     data = database.Column(database.Date)
     valor = database.Column(database.Numeric(5,2))
-    status = database.Column(database.Enum(StatusFinanceiro), nullable=False, default=StatusFinanceiro.PENDENTE.value, server_default=StatusFinanceiro.PENDENTE.value)
+    status = database.Column(database.String(8), nullable=False, default='pendente')
     idfilho = database.Column(database.Integer, database.ForeignKey('filhos.matricula'), nullable=False)
 
 class Assistencia(database.Model):
