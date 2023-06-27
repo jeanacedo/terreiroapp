@@ -1,21 +1,9 @@
-from main import database
-import enum
+from juma_sis import database
 
-# class Status(enum.Enum):
-#     ATIVO = 'ativo'
-#     INATIVO = 'inativo'
-#     SUSPENSO = 'suspenso'
-
-# class Users(enum.Enum):
-#     ADM = 'adm'
-#     SUP = 'sup'
-
-# class StatusFinanceiro(enum.Enum):
-#     PAGO = 'pago'
-#     PENDENTE = 'pendente'
 
 class Usuario(database.Model):
-    username = database.Column(database.String(30), primary_key=True, nullable=False)
+    iduser = database.Column(database.Integer, primary_key=True, nullable=False)
+    username = database.Column(database.String(30))
     role = database.Column(database.String(3), nullable=False, default='sup')
     senha = database.Column(database.Integer, nullable=False)
 
@@ -39,7 +27,7 @@ class Filhos(database.Model):
     bairro = database.Column(database.String(12))
     cidade = database.Column(database.String(10))
     uf = database.Column(database.String(2))
-    idresp = database.Column(database.Integer, database.ForeignKey('responsavel.idresp'), nullable=False)
+    idresp = database.Column(database.Integer, database.ForeignKey('responsavel.idresp'),)
     img_filho = database.Column(database.String, default='padrao.jpg')
     mensalidade = database.relationship('Financeiro', backref='filhos', lazy=True)
     idgira = database.relationship('Gira', backref='filhos', lazy=True)

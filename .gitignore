@@ -1,7 +1,5 @@
 # created by virtualenv automatically
 *venv
-secret.py
 dependences
-test.py
 instance
-
+/juma_sis/test.py
