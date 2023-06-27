@@ -4,4 +4,308 @@
         <div class="container">
                 <h1>pagina dos filhos</h1>
         </div>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <form method="POST" action="" class="border mt-4 w-75 p-3 ">
+                    {{ form_filho.csrf_token }}
+                    <legend>Cadastro de filho</legend>
+                    <fieldset>
+                        <div class="form-group">
+                            {{ form_filho.nome.label(class="form-control-label") }}
+                            {% if form_filho.nome.errors %}
+                                {{ form_filho.nome(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for erro in form_filho.nome.errors %}
+                                        {{ erro }}
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form_filho.nome(class="form-control") }}
+                            {% endif %}
+                        </div>
+                        <hr>
+                        <p>Data de nascimento:</p>
+                        <div class="row form-group">
+                            <div class="col-1">
+                                {{ form_filho.nascimento_dia.label(class="form-control-label") }}
+                                {% if form_filho.nascimento_dia.errors %}
+                                    {{ form_filho.nascimento_dia(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.nascimento_dia.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.nascimento_dia(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="col-1">
+                                {{ form_filho.nascimento_mes.label(class="form-control-label") }}
+                                {% if form_filho.nascimento_mes.errors %}
+                                    {{ form_filho.nascimento_mes(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.nascimento_mes.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.nascimento_mes(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="col-1">
+                                {{ form_filho.nascimento_ano.label(class="form-control-label") }}
+                                {% if form_filho.nascimento_ano.errors %}
+                                    {{ form_filho.nascimento_ano(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.nascimento_ano.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.nascimento_ano(class="form-control") }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <hr>
+                        <p>inicio:</p>
+                        <div class="row form-group">
+                            <div class="col-1">
+                                {{ form_filho.inicio_dia.label(class="form-control-label") }}
+                                {% if form_filho.inicio_dia.errors %}
+                                    {{ form_filho.inicio_dia(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.inicio_dia.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.inicio_dia(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="col-1">
+                                {{ form_filho.inicio_mes.label(class="form-control-label") }}
+                                {% if form_filho.inicio_mes.errors %}
+                                    {{ form_filho.inicio_mes(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.inicio_mes.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.inicio_mes(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="col-1">
+                                {{ form_filho.inicio_ano.label(class="form-control-label") }}
+                                {% if form_filho.inicio_ano.errors %}
+                                    {{ form_filho.inicio_ano(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.inicio_ano.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.inicio_ano(class="form-control") }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <hr>
+                        <p>Orixás:</p>
+                        <div class="row form-group">
+                            <div class="col-3">
+                                {% if form_filho.orixa1.errors %}
+                                    {{ form_filho.orixa1(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.orixa1.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.orixa1(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="col-3">
+                                {% if form_filho.orixa2.errors %}
+                                    {{ form_filho.orixa2(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.orixa2.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.orixa2(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="col-3">
+                                {% if form_filho.orixa3.errors %}
+                                    {{ form_filho.orixa3(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.orixa3.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.orixa3(class="form-control") }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="form-group col-4">
+                                {{ form_filho.telefone.label(class="form-control-label") }}
+                                {% if form_filho.telefone.errors %}
+                                    {{ form_filho.telefone(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.telefone.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.telefone(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group col-4">
+                                {{ form_filho.email.label(class="form-control-label") }}
+                                {% if form_filho.email.errors %}
+                                    {{ form_filho.email(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.email.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.email(class="form-control") }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="form-group col-4">
+                                {{ form_filho.rg.label(class="form-control-label") }}
+                                {% if form_filho.rg.errors %}
+                                    {{ form_filho.rg(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.rg.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.rg(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group col-4">
+                                {{ form_filho.cpf.label(class="form-control-label") }}
+                                {% if form_filho.cpf.errors %}
+                                    {{ form_filho.cpf(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.cpf.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.cpf(class="form-control") }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <hr>
+                        <p>Endereço:</p>
+                        <div class="form-group">
+                            {{ form_filho.rua.label(class="form-control-label") }}
+                            {% if form_filho.rua.errors %}
+                                {{ form_filho.rua(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for erro in form_filho.rua.errors %}
+                                        {{ erro }}
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form_filho.rua(class="form-control") }}
+                            {% endif %}
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-1">
+                                {{ form_filho.ncasa.label(class="form-control-label") }}
+                                {% if form_filho.ncasa.errors %}
+                                    {{ form_filho.ncasa(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.ncasa.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.ncasa(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group col-4">
+                                {{ form_filho.complemento.label(class="form-control-label") }}
+                                {% if form_filho.complemento.errors %}
+                                    {{ form_filho.complemento(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.complemento.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.complemento(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group col-2">
+                                {{ form_filho.bairro.label(class="form-control-label") }}
+                                {% if form_filho.bairro.errors %}
+                                    {{ form_filho.bairro(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.bairro.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.bairro(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group col-4">
+                                {{ form_filho.cidade.label(class="form-control-label") }}
+                                {% if form_filho.cidade.errors %}
+                                    {{ form_filho.cidade(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.cidade.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.cidade(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group col-1">
+                                {{ form_filho.uf.label(class="form-control-label") }}
+                                {% if form_filho.uf.errors %}
+                                    {{ form_filho.uf(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.uf.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.uf(class="form-control") }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            {{ form_filho.idresp.label(class="form-control-label") }}
+                            {% if form_filho.idresp.errors %}
+                                {{ form_filho.idresp(class="form-control is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for erro in form_filho.idresp.errors %}
+                                        {{ erro }}
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form_filho.idresp(class="form-control") }}
+                            {% endif %}
+                        </div>
+                    </fieldset>
+                    {{ form_filho.button_submit(class="btn btn-primary mt-2") }}
+                </form>
+            </div>
+        </div>
 {% endblock %}

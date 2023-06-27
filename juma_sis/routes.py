@@ -1,14 +1,15 @@
 from flask import render_template, redirect, url_for, flash, request
 from juma_sis import app, database
-from juma_sis.forms import FormLogin
+import juma_sis.forms as fm
 
 @app.route('/')
 def hello_world():
     return render_template('home.html')
 
-@app.route('/filhos')
+@app.route('/filhos', methods=['GET', 'POST'])
 def filhos():
-    return render_template('filhos.html')
+    form_filho = fm.RegistroFilho()
+    return render_template('filhos.html', form_filho=form_filho)
 
 @app.route('/giras')
 def giras():
@@ -20,7 +21,7 @@ def mensalidades():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    form_login = FormLogin()
+    form_login = fm.FormLogin()
     if form_login.validate_on_submit():
         #realizou login
         flash(f'Login feito com sucesso para o email: {form_login.username.data}', 'alert-success')

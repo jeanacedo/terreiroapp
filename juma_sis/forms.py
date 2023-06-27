@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Email
+from wtforms.validators import DataRequired, Email, Length
 
 class FormLogin(FlaskForm):
     username = StringField('Email', validators=[DataRequired(message='Campo obrigatório'), Email(message='Digite um email válido')])
@@ -30,3 +30,4 @@ class RegistroFilho(FlaskForm):
     cidade = StringField('Cidade')
     uf = StringField('UF')
     idresp = StringField('responsável(se menor)')
+    button_submit = SubmitField('Cadastrar')
