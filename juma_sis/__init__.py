@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 
@@ -7,6 +8,7 @@ app.config['SECRET_KEY'] = '54fdc2aa9e6a6077e9925a3a5ee175dd7004a6b0a4405a427fb9
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///juma_database.db'
 
 database = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
 
 
 from juma_sis import routes

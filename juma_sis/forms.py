@@ -29,5 +29,5 @@ class RegistroFilho(FlaskForm):
     bairro = StringField('Bairro')
     cidade = StringField('Cidade')
     uf = StringField('UF')
-    idresp = StringField('responsável(se menor)')
+    idresp = StringField('Responsável (se menor)')
     button_submit = SubmitField('Cadastrar')
