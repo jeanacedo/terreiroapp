@@ -3,6 +3,7 @@ from juma_sis import app, database
 import juma_sis.forms as fm
 from juma_sis.models import Filhos, Gira, Financeiro
 from datetime import datetime
+from wtforms import BooleanField
 
 @app.route('/')
 def home():
@@ -28,7 +29,8 @@ def filhos():
 @app.route('/giras', methods=['GET', 'POST'])
 def giras():
     form_gira = fm.RegistroGiras()
-    return render_template('giras.html', form_gira=form_gira)
+    form_presenca = fm.RegistroPresenca()
+    return render_template('giras.html', form_gira=form_gira, form_presenca=form_presenca)
 
 @app.route('/financeiro', methods=['GET', 'POST'])
 def mensalidades():
@@ -36,7 +38,8 @@ def mensalidades():
 
 @app.route('/deitagem', methods=['GET', 'POST'])
 def deitagem():
-    return render_template('deitagem.html')
+    form_deitagem = fm.RegistroDeitagem()
+    return render_template('deitagem.html', form_deitagem=form_deitagem)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
