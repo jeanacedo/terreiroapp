@@ -1,11 +1,11 @@
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash
 from juma_sis import app, database
 import juma_sis.forms as fm
-from juma_sis.models import Filhos
+from juma_sis.models import Filhos, Gira, Financeiro
 from datetime import datetime
 
 @app.route('/')
-def hello_world():
+def home():
     return render_template('home.html')
 
 @app.route('/filhos', methods=['GET', 'POST'])
@@ -25,13 +25,17 @@ def filhos():
         database.session.commit()
     return render_template('filhos.html', form_filho=form_filho)
 
-@app.route('/giras')
+@app.route('/giras', methods=['GET', 'POST'])
 def giras():
     return render_template('giras.html')
 
-@app.route('/financeiro')
+@app.route('/financeiro', methods=['GET', 'POST'])
 def mensalidades():
     return render_template('mensalidades.html')
+
+@app.route('/deitagem', methods=['GET', 'POST'])
+def deitagem():
+    return render_template('deitagem.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
