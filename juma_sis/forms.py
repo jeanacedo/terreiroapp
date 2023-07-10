@@ -32,3 +32,12 @@ class RegistroFilho(FlaskForm):
     nomeresp = StringField('Responsável (se menor)')
     telefoneresp = StringField('Telefone responsável')
     button_submit = SubmitField('Cadastrar')
+
+class RegistroGiras(FlaskForm):
+    datagira_dia = StringField('Dia')
+    datagira_mes = StringField('Mês')
+    datagira_ano = StringField('Ano')
+    assitencia = StringField('Quantidade de assistencia')
+    linha1 = StringField('Primeira Linha')
+    linha2 = StringField('Segunda Linha')
+    button_submit = SubmitField('Cadastrar')

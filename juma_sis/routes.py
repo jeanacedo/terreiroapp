@@ -11,11 +11,11 @@ def home():
 @app.route('/filhos', methods=['GET', 'POST'])
 def filhos():
     form_filho = fm.RegistroFilho()
-    data_str_nascimento = f'{form_filho.nascimento_ano.data}-{form_filho.nascimento_mes.data}-{form_filho.nascimento_dia.data}'
-    data_nascimento = datetime.strptime(data_str_nascimento, "%Y-%m-%d")
-    data_str_inicio = f'{form_filho.inicio_ano.data}-{form_filho.inicio_mes.data}-{form_filho.inicio_dia.data}'
-    data_inicio = datetime.strptime(data_str_inicio, "%Y-%m-%d")
     if form_filho.validate_on_submit():
+        data_str_nascimento = f'{form_filho.nascimento_ano.data}-{form_filho.nascimento_mes.data}-{form_filho.nascimento_dia.data}'
+        data_nascimento = datetime.strptime(data_str_nascimento, "%Y-%m-%d")
+        data_str_inicio = f'{form_filho.inicio_ano.data}-{form_filho.inicio_mes.data}-{form_filho.inicio_dia.data}'
+        data_inicio = datetime.strptime(data_str_inicio, "%Y-%m-%d")
         filho = Filhos(nome=form_filho.nome.data, nascimento=data_nascimento, inicio=data_inicio, orixa1=form_filho.orixa1.data,
                        orixa2=form_filho.orixa2.data, orixa3=form_filho.orixa3.data, telefone=form_filho.telefone.data,
                        email=form_filho.email.data, rg=form_filho.rg.data, cpf=form_filho.cpf.data, rua=form_filho.rua.data,
@@ -27,7 +27,8 @@ def filhos():
 
 @app.route('/giras', methods=['GET', 'POST'])
 def giras():
-    return render_template('giras.html')
+    form_gira = fm.RegistroGiras()
+    return render_template('giras.html', form_gira=form_gira)
 
 @app.route('/financeiro', methods=['GET', 'POST'])
 def mensalidades():
