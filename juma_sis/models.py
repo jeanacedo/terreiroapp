@@ -1,12 +1,18 @@
-from juma_sis import database
+from juma_sis import database, login_manager
+from flask_login import UserMixin
 
 
+@login_manager.user_loader
+def load_usuario(idusuario):
+    return Usuario.query.get(idusuario)
 
-class Usuario(database.Model):
+class Usuario(database.Model, UserMixin):
     iduser = database.Column(database.Integer, primary_key=True, nullable=False)
     username = database.Column(database.String(30))
     role = database.Column(database.String(3), nullable=False, default='sup')
     senha = database.Column(database.Integer, nullable=False)
+    def get_id(self):
+        return str(self.iduser)
 
 class Filhos(database.Model):
     matricula = database.Column(database.Integer, primary_key=True, nullable=False)

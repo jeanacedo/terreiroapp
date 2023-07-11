@@ -1,8 +1,9 @@
 from flask import render_template, redirect, url_for, flash
-from juma_sis import app, database
+from juma_sis import app, database, bcrypt
 import juma_sis.forms as fm
-from juma_sis.models import Filhos, Gira, Financeiro, Responsavel
+from juma_sis.models import Filhos, Responsavel, Usuario
 from datetime import datetime
+from flask_login import login_user
 
 @app.route('/')
 def home():
@@ -59,8 +60,11 @@ def deitagem():
 def login():
     form_login = fm.FormLogin()
     if form_login.validate_on_submit():
-        #realizou login
-        flash(f'Login feito com sucesso para o email: {form_login.username.data}', 'alert-success')
-        #redirecionando para pagina filhos
-        return redirect(url_for('filhos'))
+        usuario = Usuario.query.filter(Usuario.username == form_login.username.data).first()
+        if usuario and bcrypt.check_password_hash(usuario.senha, form_login.senha.data):
+            login_user(usuario, remember=form_login.remember.data)
+            flash(f'Login feito com sucesso para o email: {form_login.username.data}', 'alert-success')
+            return redirect(url_for('filhos'))
+        else:
+            flash(f'Email ou senha inválidos', 'alert-danger')
     return render_template('login.html', form_login=form_login)
