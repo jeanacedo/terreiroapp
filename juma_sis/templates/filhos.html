@@ -6,7 +6,7 @@
         </div>
         <div class="container mt-5">
             <div class="row justify-content-center">
-                <form method="POST" action="" class="border mt-4 w-75 p-3 ">
+                <form method="POST" action="" class="border mt-4 w-75 p-3" enctype="multipart/form-data">
                     {{ form_filho.csrf_token }}
                     <legend>Cadastro de filho</legend>
                     <fieldset>
@@ -330,6 +330,16 @@
                                     {{ form_filho.telefoneresp(class="form-control") }}
                                 {% endif %}
                             </div>
+                        </div>
+                        <hr>
+                        <div class="form-group mt-2">
+                            {{ form_filho.foto_perfil.label }}
+                            {{ form_filho.foto_perfil(class="form-control-file") }}
+                            {% if form_filho.foto_perfil.errors %}
+                                {% for erro in form_filho.foto_perfil.errors %}
+                                    <span class="text-danger">{{ erro }}</span><br>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </fieldset>
                     {{ form_filho.button_submit(class="btn btn-primary mt-2") }}

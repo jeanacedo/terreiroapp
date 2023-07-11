@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Email, Length
 from juma_sis.models import Filhos
@@ -35,6 +36,7 @@ class RegistroFilho(FlaskForm):
     nomeresp = StringField('Responsável (se menor)')
     cpfresp = StringField('CPF', validators=[DataRequired(message='Campo obrigatório'), Length(min=11, max=11)])
     telefoneresp = StringField('Telefone responsável')
+    foto_perfil = FileField('Foto do filho', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
     button_submit = SubmitField('Cadastrar')
 
 class RegistroGiras(FlaskForm):

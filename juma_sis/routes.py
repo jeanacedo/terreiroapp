@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, request
 from juma_sis import app, database, bcrypt
 import juma_sis.forms as fm
 from juma_sis.models import Filhos, Responsavel, Usuario
@@ -68,10 +68,24 @@ def login():
         if usuario and bcrypt.check_password_hash(usuario.senha, form_login.senha.data):
             login_user(usuario, remember=form_login.remember.data)
             flash(f'Login feito com sucesso para o email: {form_login.username.data}', 'alert-success')
-            return redirect(url_for('filhos'))
+            next_par = request.args.get('next')
+            if next_par:
+                return redirect(next_par)
+            else:
+                return redirect(url_for('home'))
         else:
             flash(f'Email ou senha inválidos', 'alert-danger')
     return render_template('login.html', form_login=form_login)
+
+@app.route('/perfil')
+@login_required
+def perfil():
+    return render_template('perfil.html')
+
+@app.route('/perfil_filho')
+@login_required
+def perfil_filho():
+    return render_template('perfil_filho.html')
 
 @app.route('/sair')
 def sair():

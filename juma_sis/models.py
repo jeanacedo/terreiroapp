@@ -35,7 +35,7 @@ class Filhos(database.Model):
     cidade = database.Column(database.String(10))
     uf = database.Column(database.String(2))
     idresp = database.Column(database.Integer, database.ForeignKey('responsavel.idresp'))
-    img_filho = database.Column(database.String, default='padrao.jpg')
+    img_filho = database.Column(database.String, default='user.png')
     mensalidade = database.relationship('Financeiro', backref='filhos', lazy=True)
     idgira = database.relationship('Gira', backref='filhos', lazy=True)
     iddeitagem = database.relationship('Deitagem', backref='filhos', lazy=True)
