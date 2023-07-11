@@ -291,7 +291,7 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="form-group col-6">
+                            <div class="form-group col-4">
                                 {{ form_filho.nomeresp.label(class="form-control-label") }}
                                 {% if form_filho.nomeresp.errors %}
                                     {{ form_filho.nomeresp(class="form-control is-invalid") }}
@@ -304,7 +304,20 @@
                                     {{ form_filho.nomeresp(class="form-control") }}
                                 {% endif %}
                             </div>
-                            <div class="form-group col-6">
+                            <div class="form-group col-4">
+                                {{ form_filho.cpfresp.label(class="form-control-label") }}
+                                {% if form_filho.cpfresp.errors %}
+                                    {{ form_filho.cpfresp(class="form-control is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for erro in form_filho.cpfresp.errors %}
+                                            {{ erro }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form_filho.cpfresp(class="form-control") }}
+                                {% endif %}
+                            </div>
+                            <div class="form-group col-4">
                                 {{ form_filho.telefoneresp.label(class="form-control-label") }}
                                 {% if form_filho.telefoneresp.errors %}
                                     {{ form_filho.telefoneresp(class="form-control is-invalid") }}

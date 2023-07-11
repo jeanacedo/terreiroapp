@@ -21,7 +21,7 @@ class Filhos(database.Model):
     telefone = database.Column(database.Integer)
     email = database.Column(database.String(60))
     rg = database.Column(database.Integer)
-    cpf = database.Column(database.Integer, nullable=False)
+    cpf = database.Column(database.Integer, nullable=False, unique=True)
     rua = database.Column(database.String(50))
     ncasa = database.Column(database.Integer)
     complemento = database.Column(database.String(10))
@@ -81,5 +81,6 @@ class Deitagem(database.Model):
 class Responsavel(database.Model):
     idresp = database.Column(database.Integer, primary_key=True)
     nome = database.Column(database.String(60))
+    cpf = database.Column(database.Integer, nullable=False, unique=True)
     telefone = database.Column(database.Integer)
     filhoid = database.relationship('Filhos', backref='responsavel', lazy=True)

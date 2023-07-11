@@ -33,6 +33,7 @@ class RegistroFilho(FlaskForm):
     cidade = StringField('Cidade')
     uf = StringField('UF')
     nomeresp = StringField('Responsável (se menor)')
+    cpfresp = StringField('CPF', validators=[DataRequired(message='Campo obrigatório'), Length(min=11, max=11)])
     telefoneresp = StringField('Telefone responsável')
     button_submit = SubmitField('Cadastrar')
 
@@ -47,11 +48,13 @@ class RegistroGiras(FlaskForm):
 
 class RegistroPresenca(FlaskForm):
     submit = SubmitField('Presença')
+
 class RegistroDeitagem(FlaskForm):
     datadeitagem_dia = StringField('Dia')
     datadeitagem_mes = StringField('Mês')
     datadeitagem_ano = StringField('Ano')
     orixa = StringField('Orixá')
+    matricula_filho = StringField('Matricula')
     filho_deitagem = StringField('Filho que deitou')
     button_submit = SubmitField('Registrar')
 

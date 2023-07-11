@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, flash
 from juma_sis import app, database
 import juma_sis.forms as fm
-from juma_sis.models import Filhos, Gira, Financeiro
+from juma_sis.models import Filhos, Gira, Financeiro, Responsavel
 from datetime import datetime
 from wtforms import BooleanField
 
@@ -23,6 +23,15 @@ def filhos():
                        ncasa=form_filho.ncasa.data, complemento=form_filho.complemento.data, bairro=form_filho.bairro.data,
                        cidade=form_filho.cidade.data, uf=form_filho.uf.data)
         database.session.add(filho)
+        database.session.commit()
+    if form_filho.nomeresp:
+        responsavel = Responsavel(nome=form_filho.nomeresp.data, cpf=form_filho.cpfresp.data,
+                                  telefone=form_filho.telefoneresp.data)
+        database.session.add(responsavel)
+        database.session.commit()
+        filho = Filhos.query.filter_by(cpf=form_filho.cpf.data).first()
+        idresponsavel = Responsavel.query.filter_by(cpf=form_filho.cpfresp.data).first().idresp
+        filho.idresp = int(idresponsavel)
         database.session.commit()
     return render_template('filhos.html', form_filho=form_filho)
 
