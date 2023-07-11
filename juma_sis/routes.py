@@ -24,15 +24,21 @@ def filhos():
                        cidade=form_filho.cidade.data, uf=form_filho.uf.data)
         database.session.add(filho)
         database.session.commit()
-    if form_filho.nomeresp:
-        responsavel = Responsavel(nome=form_filho.nomeresp.data, cpf=form_filho.cpfresp.data,
-                                  telefone=form_filho.telefoneresp.data)
-        database.session.add(responsavel)
-        database.session.commit()
-        filho = Filhos.query.filter_by(cpf=form_filho.cpf.data).first()
-        idresponsavel = Responsavel.query.filter_by(cpf=form_filho.cpfresp.data).first().idresp
-        filho.idresp = int(idresponsavel)
-        database.session.commit()
+        if form_filho.nomeresp and Responsavel.query.filter_by(cpf=form_filho.cpfresp.data).all() == []:
+            responsavel = Responsavel(nome=form_filho.nomeresp.data, cpf=form_filho.cpfresp.data, telefone=form_filho.telefoneresp.data)
+            database.session.add(responsavel)
+            database.session.commit()
+            filho = Filhos.query.filter_by(cpf=form_filho.cpf.data).first()
+            idresponsavel = Responsavel.query.filter_by(cpf=form_filho.cpfresp.data).first().idresp
+            filho.idresp = int(idresponsavel)
+            database.session.commit()
+        else:
+            filho = Filhos.query.filter_by(cpf=form_filho.cpf.data).first()
+            idresponsavel = Responsavel.query.filter_by(cpf=form_filho.cpfresp.data).first().idresp
+            filho.idresp = int(idresponsavel)
+            database.session.commit()
+        flash(f'Cadastro de {form_filho.nome.data} feito com sucesso', 'alert-success')
+        return redirect(url_for('filhos'))
     return render_template('filhos.html', form_filho=form_filho)
 
 @app.route('/giras', methods=['GET', 'POST'])
