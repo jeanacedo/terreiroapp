@@ -3,13 +3,14 @@ from juma_sis import app, database, bcrypt
 import juma_sis.forms as fm
 from juma_sis.models import Filhos, Responsavel, Usuario
 from datetime import datetime
-from flask_login import login_user
+from flask_login import login_user, logout_user, current_user, login_required
 
 @app.route('/')
 def home():
     return render_template('home.html')
 
 @app.route('/filhos', methods=['GET', 'POST'])
+@login_required
 def filhos():
     form_filho = fm.RegistroFilho()
     if form_filho.validate_on_submit():
@@ -42,16 +43,19 @@ def filhos():
     return render_template('filhos.html', form_filho=form_filho)
 
 @app.route('/giras', methods=['GET', 'POST'])
+@login_required
 def giras():
     form_gira = fm.RegistroGiras()
     form_presenca = fm.RegistroPresenca()
     return render_template('giras.html', form_gira=form_gira, form_presenca=form_presenca)
 
 @app.route('/financeiro', methods=['GET', 'POST'])
+@login_required
 def mensalidades():
     return render_template('mensalidades.html')
 
 @app.route('/deitagem', methods=['GET', 'POST'])
+@login_required
 def deitagem():
     form_deitagem = fm.RegistroDeitagem()
     return render_template('deitagem.html', form_deitagem=form_deitagem)
@@ -68,3 +72,9 @@ def login():
         else:
             flash(f'Email ou senha inválidos', 'alert-danger')
     return render_template('login.html', form_login=form_login)
+
+@app.route('/sair')
+def sair():
+    logout_user()
+    flash(f'Logout feito com sucesso', 'alert-success')
+    return redirect(url_for('home'))
