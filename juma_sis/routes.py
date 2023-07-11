@@ -3,7 +3,6 @@ from juma_sis import app, database
 import juma_sis.forms as fm
 from juma_sis.models import Filhos, Gira, Financeiro, Responsavel
 from datetime import datetime
-from wtforms import BooleanField
 
 @app.route('/')
 def home():
